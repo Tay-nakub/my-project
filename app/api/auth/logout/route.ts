@@ -1,3 +1,10 @@
-export async function POST(
-  request: Request
-) {}
+import { clearSessionCookie } from "@/lib/auth/session";
+
+export async function POST() {
+  await clearSessionCookie();
+
+  return new Response(JSON.stringify({ message: "Logged out successfully" }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
+}

@@ -1,17 +1,17 @@
-
-"use client";
-
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/lib/client";
-import {Toaster} from "sonner";
+import { Toaster } from "sonner";
 import { CartButton } from "@/components/CartButton";
 import { LocatorJS } from "@/components/LocatorJS";
 import { cn } from "@/lib/utils";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { Metadata } from "next";
+import { SiteHeader } from "@/components/SiteHeader";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +23,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata: Metadata = {
+  title: { default: "My Coffice", template: "%s | My Coffice" },
+  description: "ร้านกาแฟที่ดีที่สุดในเมือง",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,18 +36,26 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        "font-sans",
+        inter.variable,
+      )}
     >
-      <QueryProvider>
-        <SidebarProvider>
-          <AppSidebar/>
-          <body className="min-h-full flex flex-col">{children}</body>
-        
-          <Toaster position="top-right" richColors  /> {/* Add this line to include the Toaster component */}
-          <CartButton/>
-          <LocatorJS />
-        </SidebarProvider>
-      </QueryProvider>
+      <body className="flex flex-col">
+        <ThemeProvider>
+          <QueryProvider>
+            <SiteHeader />
+            <main className="flex flex-col flex-1">{children}</main>
+            <Toaster position="top-right" richColors />{" "}
+            {/* Add this line to include the Toaster component */}
+            <LocatorJS />
+          </QueryProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
