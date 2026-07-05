@@ -25,7 +25,6 @@ import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Suspense } from "react";
-
 const LoginForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -44,7 +43,7 @@ const LoginForm = () => {
       fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data), // email and password
       }).then(async (res) => {
         const body = await res.json();
         if (!res.ok) {
@@ -55,15 +54,14 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: LoginInput) => {
-    try{
+    try {
       await mutateAsync(data);
-      toast.success("เข้าสู่ระบบสำเร็จ");
+      toast.success("เข้าสู่ระบบสำเร็จ!");
       router.push(redirect);
     } catch (error) {
+      toast.error("เข้าสู่ระบบไม่สำเร็จ!");
       console.error("Login error:", error);
-      toast.error("เข้าสู่ระบบไม่สำเร็จ");
     }
-
   };
 
   return (
@@ -134,12 +132,10 @@ const LoginForm = () => {
     </div>
   );
 };
-
-const LoginPage = () => {
+const LoginPage = () => (
   <Suspense>
     <LoginForm />
   </Suspense>
-}
+);
 
 export default LoginPage;
-
