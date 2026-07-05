@@ -7,6 +7,9 @@ config({ path: process.env.ENV_FILE ?? ".env" });
 
 import { defineConfig } from "prisma/config";
 
+console.log("Prisma config: using env file", process.env.DIRECT_URL ?? ".env");
+
+
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
