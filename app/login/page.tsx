@@ -24,8 +24,9 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { Suspense } from "react";
 
-const LoginPage = () => {
+const LoginForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/menu";
@@ -134,4 +135,11 @@ const LoginPage = () => {
   );
 };
 
+const LoginPage = () => {
+  <Suspense>
+    <LoginForm />
+  </Suspense>
+}
+
 export default LoginPage;
+
