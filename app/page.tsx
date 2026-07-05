@@ -158,7 +158,7 @@ export default function Home() {
               <p className="text-muted-foreground text-sm">มาใหม่ล่าสุด</p>
             </div>
             <Link href="/menu" className="text-primary text-sm hover:underline">
-              ดูทั้งหมด →
+              ดูทั้งหมด  →
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
