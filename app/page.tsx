@@ -101,7 +101,7 @@ export default function Home() {
           <div className="flex-1 space-y-5">
             <Badge variant="secondary">เปิดบริการทุกวัน 7:00–20:00</Badge>
             <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
-              กาแฟดี ๆ
+              กาแฟดีๆ
               <br />
               <span className="text-primary">ส่งถึงโต๊ะคุณ</span>
             </h1>
@@ -158,7 +158,7 @@ export default function Home() {
               <p className="text-muted-foreground text-sm">มาใหม่ล่าสุด</p>
             </div>
             <Link href="/menu" className="text-primary text-sm hover:underline">
-              ดูทั้งหมด  →
+              ดูทั้งหมด →
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -176,6 +176,8 @@ export default function Home() {
       )}
     </div>
   );
+
+
 
   // return (
   //   <div className="flex flex-col gap-2 flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
